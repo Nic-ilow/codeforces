@@ -16,8 +16,11 @@ signed main()
         cin >> n;
         vector<int> a;
         int maxVal = 0;
+        bool broken = false;
         for (int i = 0; i < n; i++){
-            cin >> a[i];
+            int temp;
+            cin >> temp;
+            a.push_back(temp);
         }
         sort(a.begin(), a.end());
 
@@ -30,15 +33,15 @@ signed main()
             cannot be increased or balanced) 
             */
             if (max(maxVal, a[i+1]) != max(maxVal, a[i])){
-                cout << "No" << endl;
-                return;
+                broken = true;
+                break;
             }
             // Update the maxVal we can increment to since array is sorted
             maxVal = max(maxVal, a[i]) + 1;
         }
-
+        if (broken) cout << "NO" << endl;
+        else cout << "Yes" << endl;
     }
-    cout << "Yes" << endl;
     return 0;
 }
 
